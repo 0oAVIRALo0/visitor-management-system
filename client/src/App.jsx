@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import LinearProgress from "@mui/material/LinearProgress";
 
 import { FiSettings } from "react-icons/fi";
 
-import {Navbar, Sidebar, ThemeSettings, NewMeeting } from "./components";
-import {HomeScreen, AcceptedRequests, MeetingRequests, Calendar, Form, LogIn, SignIn, Error} from "./pages";
+import { Navbar, Sidebar, ThemeSettings, NewMeeting } from "./components";
+import {
+  HomeScreen,
+  AcceptedRequests,
+  MeetingRequests,
+  Calendar,
+  Form,
+  LogIn,
+  SignIn,
+  Error,
+} from "./pages";
 
 import { PopUp } from "./components";
 
@@ -15,7 +24,17 @@ import { useStateContext } from "./contexts/ContextProvider";
 import "./App.css";
 
 const App = () => {
-  const {setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings, isLoggedIn, userData} = useStateContext();
+  const {
+    setCurrentColor,
+    setCurrentMode,
+    currentMode,
+    activeMenu,
+    currentColor,
+    themeSettings,
+    setThemeSettings,
+    isLoggedIn,
+    userData,
+  } = useStateContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -59,7 +78,7 @@ const App = () => {
         </div> */}
         <div
           className={`dark:bg-secondary-dark-bg ${
-            activeMenu 
+            activeMenu
               ? "w-72 fixed sidebar bg-white transition-all duration-300 ease-in-out"
               : "w-20 transition-all duration-200 ease-in-out"
           }`}
@@ -82,7 +101,7 @@ const App = () => {
             {themeSettings && <ThemeSettings />}
 
             <Routes>
-            <Route path="/" element={<Navigate to="/homescreen" />} />
+              <Route path="/" element={<Navigate to="/homescreen" />} />
               <Route path="/homescreen" element={<HomeScreen />} />
 
               <Route path="/acceptedrequests" element={<AcceptedRequests />} />
@@ -98,7 +117,6 @@ const App = () => {
           </div>
           {userData.userType === "faculty" && <PopUp />}
           {userData.userType === "security" && <PopUp />}
-
         </div>
       </div>
     </div>
